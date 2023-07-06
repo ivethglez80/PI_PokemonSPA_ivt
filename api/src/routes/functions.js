@@ -1,98 +1,118 @@
-const axios = require ('axios');
-const {pokemon, type} = require ('../db');
-let URL = "https://pokeapi.co/api/v2/pokemon/"
-let IMG2 = "https://typedex.app/images/ui/types/dark/"
-let IMG1 = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/8.svg";
+const axios = require('axios');
+const { Pokemon, Type } = require('../db'); 
 
-
-/*obtener datos de todos los pokemones de la api para darselos a PokeRuta*/
-const dataApi = async() =>{
+//TRAIGO LOS DATOS DE LA API, HACIENDO OTRO LLAMADO A LA URL DEL POKEMON PARA QUE ME TRAIGA LOS DATOS NECESARIOS EN LA RUTA PRINCIPAL (NOMBRE, IMAGEN, TIPO).
+const getApiInfo = async () => {
+   // console.log("entre a getApiInfo");
     try {
-        const pokes = [];
-        while (pokes.length<40){
-            const info = await axios.get(URL);
-            const pokeApi = info.data;
-            const pokeTemp = pokeApi.results
-                             .map(({name, url})=>({name, url}));
-            pokes.push(...pokeTemp);
-            URL = pokeApi.next;
-        }
-
-        const promises = pokes.map(async({URL})=>{
-            const response = await axios.get(URL);
-            const poke = response.data;
+        let url = 'https://pokeapi.co/api/v2/pokemon/';
+      //  console.log(url);
+        let pokemones = [];
+        do {
+         //   console.log("antes de axios");
+            let info = await axios.get(url);
+           // console.log("despus de axios");
+            let pokemonesApi = info.data;
+            
+            let auxPokemones = pokemonesApi.results.map(e => {
+                return {
+                    name: e.name,
+                    url: e.url,
+                }
+            })
+           // console.log("tengo los auxiliares");
+            pokemones.push(...auxPokemones);
+           // console.log("hice el array");
+            url = pokemonesApi.next;
+            //console.log(`next ${url}`);
+        } while (url != null && pokemones.length < 10); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
+        //console.log(pokemones);
+        let pokesWithData = await Promise.all(pokemones.map(async e => {
+            let pokemon = await axios.get(e.url);
             return {
-                id : poke.id,
-                name : poke.name,
-                img : poke.sprites.other['home']['front_default'],
-                types: poke.types.map(({type})=>({
-                    name: type.name,
-                    img: `IMG2${type.name}.svg`,
-                })),
-                hp: poke.stats[0].base_stat,
-                attack: poke.stat[1].base_stat,
-                defense: poke.stats[2].base_stat,
-                speed: poke.stats[5].base_stat,
-                height: poke.height,
-                weight: poke.weight
+                id: pokemon.data.id,
+                name: pokemon.data.name,
+                img: pokemon.data.sprites.other.home.front_default,
+                types: pokemon.data.types.map(e => {
+                    return ({
+                        name: e.type.name,
+                        img: `https://typedex.app/images/ui/types/dark/${e.type.name}.svg`,
+                    })
+                }),
+                hp: pokemon.data.stats[0].base_stat,
+                attack: pokemon.data.stats[1].base_stat,
+                defense: pokemon.data.stats[2].base_stat,
+                speed: pokemon.data.stats[5].base_stat,
+                height: pokemon.data.height,
+                weight: pokemon.data.weight,
             }
-        });
-        const pokeComplete = await Promise.all(promises);
-        return pokeComplete;
-    } catch (error) {
-        res.send(500).send(error);
+        }));
+        //console.log(pokesWithData);
+        return pokesWithData;
+    } catch (e) {
+        console.log(e);
     };
 };
 
-/*obtener un solo pokemon con toda su info*/
-async function dataUnPoke(arg){
+//TRAIGO AL POKEMON ESPECIFICADO POR PARAMS (ID) / O POR QUERY (NAME) DESDE LA API CON TODOS SUS DATOS NECESARIO PARA LA RUTA DE DETALLE.
+async function getPokemonDetail(arg) {
     try {
-        const {poke} = await axios.get('URL${arg}');
-        const pokeData = {
-                id : poke.id,
-                name : poke.name,
-                img : poke.sprites.other['home']['front_default'],
-                types: poke.types.map(e=>({
+        const apiData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${arg}`);
+        const data = await apiData.data;
+        const pokemonData = {
+            id: data.id,
+            name: data.name,
+            img: data.sprites.other.home.front_default,
+            types: data.types.map(e => {
+                return ({
                     name: e.type.name,
-                    img: `IMG2${e.type.name}.svg`,
-                })),
-                hp: poke.stats[0].base_stat,
-                attack: poke.stat[1].base_stat,
-                defense: poke.stats[2].base_stat,
-                speed: poke.stats[5].base_stat,
-                height: poke.height,
-                weight: poke.weight
+                    img: `https://typedex.app/images/ui/types/dark/${e.type.name}.svg`,
+                })
+            }),
+            hp: data.stats[0].base_stat,
+            attack: data.stats[1].base_stat,
+            defense: data.stats[2].base_stat,
+            speed: data.stats[5].base_stat,
+            height: data.height,
+            weight: data.weight,
         };
-        return pokeData;
-    } catch (error) {
-        throw error;
+        return pokemonData;
+    } catch (e) {
+        console.log(e);
     };
 };
 
 
-/* obtener info de DB*/
-const pokeDB = async()=>{
-    return await pokemon.findAll({
+
+
+//TRAIGO TODOS LOS POKEMONES CREADOS DESDE LA BASE DE DATOS EN LA TABLA POKEMON, Y QUE INCLUYA LA TABLA TYPE CON SU ATRIBUTO NAME.
+const getDbInfo = async () => {
+    console.log("entre a buscar los poke en la DB");
+    return await Pokemon.findAll({
         include: {
-            model : type,
-            attributes: ['name'],
-            through:{
-                atributes:[],
+            model: Type,
+            attributes: [],
+            through: {
+                attributes: [],
             },
         }
     });
 };
 
-const getThemAll = async()=>{
-    const apiPokes = await dataApi ();
-    const dbPokes = await pokeDB ();
-    const allpokes = apiPokes.concat(dbPokes);
-    return allpokes;
-}
+//TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
+const getAllPokemon = async () => {
+    console.log("estoy en functions en getallpokemon")
+    const apiInfo = await getApiInfo();
+    console.log("apiInfo ok");
+    const dbInfo = await getDbInfo();
+    console.log("dbinfo ok");
+    const allPokemon = apiInfo.concat(dbInfo);
+    return allPokemon;
+};
 
-module.exports={
-    dataApi,
-    dataUnPoke,
-    pokeDB,
-    getThemAll
-}
+module.exports = {
+    getApiInfo,
+    getDbInfo,
+    getAllPokemon,
+    getPokemonDetail
+};
