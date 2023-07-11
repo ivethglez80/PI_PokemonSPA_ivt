@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { getPokemons } from "../../reducer/actions";
+import Nav from "../../components/navbar/navBar"
 import Card from "../../components/card/Card"
 import styles from "./home.module.css";
 
@@ -15,6 +16,8 @@ const allPokemons = useSelector((state)=>state.pokemons)
     },[dispatch]);
 
     return(
+        <div>
+        <Nav />
         <div className={styles.cards}>
             {
                allPokemons?.map((p,k)=>{
@@ -33,6 +36,7 @@ const allPokemons = useSelector((state)=>state.pokemons)
                }) 
             }
 
+        </div>
         </div>
     )
 }
