@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('type', {
     name: {
       type: DataTypes.STRING
-  },
+  }
 }, {
   createdAt: false,
   updatedAt: false,
