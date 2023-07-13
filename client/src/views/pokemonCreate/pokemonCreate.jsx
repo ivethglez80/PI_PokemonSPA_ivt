@@ -6,6 +6,7 @@ import styles from "./pokemonCreate.module.css"
 
 
 export default function PokemonCreate(){
+    
     const dispatch = useDispatch();
     const types = useSelector((state)=>state.types);
     const history = useHistory();
@@ -55,7 +56,8 @@ export default function PokemonCreate(){
             errors.img ="Image URL is not valid or empty."
         }
     return errors;
-    };
+};
+console.log({errors});
 
     const handleChange = e =>{
         setInput({
@@ -74,6 +76,7 @@ export default function PokemonCreate(){
                 ...input,
                 types: [...input.types, e.target.value]
             });
+            e.target.value = "Select Type";
         }else{
             alert("You can select up to two type options.");
             // setErrorText("You can select up to two type options.");
@@ -95,7 +98,7 @@ export default function PokemonCreate(){
             !errors.weight &&
             !errors.img){
             
-            dispatch(postPokemon(dispatch));
+            dispatch(postPokemon(input));
             setInput({
                 name:"",
                 hp:"",
@@ -118,7 +121,7 @@ export default function PokemonCreate(){
     const handleDelete = (e) =>{
         setInput({
             ...input,
-            types: input.types.filter(type=>types!==e)
+            types: input.types.filter(type=>type!==e)
         })
     };
 
@@ -131,7 +134,6 @@ export default function PokemonCreate(){
             <Link to="/home">
                 <button>Go back Home</button>
             </Link>
-
             <form onSubmit={e=>{handleSubmit(e);}}>
                 <h3>The Pokemon creator form</h3>
 
@@ -141,34 +143,35 @@ export default function PokemonCreate(){
 
                 <label>HP:</label>
                 <input type="number" value={input.hp} name="hp" onChange={e=>{handleChange(e);}} placeholder="HP" />
-                <p>{errors.name}</p>
+                <p>{errors.hp}</p>
 
                 <label>ATTACK:</label>
                 <input type="number" value={input.attack} name="attack" onChange={e=>{handleChange(e);}} placeholder="ATTACK" />
-                <p>{errors.name}</p>
+                <p>{errors.attack}</p>
 
                 <label>DEFENSE:</label>
                 <input type="number" value={input.defense} name="defense" onChange={e=>{handleChange(e);}} placeholder="DEFENSE" />
-                <p>{errors.name}</p>
+                <p>{errors.defense}</p>
 
                 <label>SPEED:</label>
                 <input type="number" value={input.speed} name="speed" onChange={e=>{handleChange(e);}} placeholder="SPEED" />
-                <p>{errors.name}</p>
+                <p>{errors.speed}</p>
 
                 <label>HEIGHT:</label>
                 <input type="number" value={input.height} name="height" onChange={e=>{handleChange(e);}} placeholder="HEIGHT" />
-                <p>{errors.name}</p>
+                <p>{errors.height}</p>
 
                 <label>WEIGTH:</label>
                 <input type="number" value={input.weight} name="weight" onChange={e=>{handleChange(e);}} placeholder="WEIGHT" />
-                <p>{errors.name}</p>
+                <p>{errors.weight}</p>
 
                 <label>IMAGE:</label>
                 <input type="text" value={input.img} name="img" onChange={e=>{handleChange(e);}} placeholder="URL IMAGE" />
-                <p>{errors.name}</p>
+                <p>{errors.img}</p>
 
                 <select onChange={e=>{handleSelect(e);}}>
                     <option> Select type </option>
+                    
                     {types?.map(e=>{
                         return(
                             <option key={e.id} value={e.name}>{e.name}</option>

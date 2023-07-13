@@ -9,10 +9,10 @@ router.get('/', async (req, res) => {
         let apiType = await axios.get('https://pokeapi.co/api/v2/type');
         let apiTypeInfo = apiType.data;
         let types = apiTypeInfo.results.map(e => e.name);
-        types.forEach(type => {
+        types.forEach(types => {
             Type.findOrCreate({
                 where: {
-                    name: type,
+                    name: types,
                 }
             });
         });

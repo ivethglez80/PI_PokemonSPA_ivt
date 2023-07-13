@@ -66,9 +66,11 @@ async function getPokemonDetail(arg) {
             types: data.types.map(e => {
                 return ({
                     name: e.type.name,
-                    img: `https://typedex.app/images/ui/types/dark/${e.type.name}.svg`,
+                    // img: `https://typedex.app/images/ui/types/dark/${e.type.name}.svg`,
                 })
+            
             }),
+            
             hp: data.stats[0].base_stat,
             attack: data.stats[1].base_stat,
             defense: data.stats[2].base_stat,
@@ -76,6 +78,8 @@ async function getPokemonDetail(arg) {
             height: data.height,
             weight: data.weight,
         };
+        console.log("estoy en getPokemonDetail en functions, lo que sigue es types");
+        console.log(types);
         return pokemonData;
     } catch (e) {
         console.log(e);
@@ -97,7 +101,7 @@ const getDbInfo = async () => {
             },
         }
     });
-};
+}
 
 //TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
 const getAllPokemon = async () => {
@@ -115,4 +119,4 @@ module.exports = {
     getDbInfo,
     getAllPokemon,
     getPokemonDetail
-};
+}

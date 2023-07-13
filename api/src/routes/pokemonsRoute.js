@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     console.log ("entre al post");
-    const {name, hp, attack, defense, speed, height, weight, img, types} = req.body;
+    const {name, hp, attack, defense, speed, height, weight, img, type} = req.body;
     console.log(`obtuve el nombre ${name}`)
     try {
         if(name) {
@@ -55,21 +55,21 @@ router.post('/', async (req, res) => {
                         weight,
                         img 
                 });
-                console.log(pokemon);
-                const typeDb = await Type.findAll({
+                const typeDb = await Type.findOne({
                     where: {
-                        name: types,
-                    }
-                });
-                pokemon.addType(typeDb);
-                return res.status(201).send(pokemon);
-            }
-            return res.status(404).send('Pokemon name already exist')
-        } 
-        if(!name) return res.status(404).send('Pokemon name is obligatory');
-    } catch (e) {
-        res.status(500).send("no se pudo crear el pokemon");
+                      name: type.toLowerCase(), 
+                    },
+                  });              
+                console.log(typeDb)
+        await pokemon.addType(typeDb);
+        return res.status(201).send(pokemon);
+      }
+      return res.status(404).send('Pokemon name already exists');
     }
+    if (!name) return res.status(404).send('Pokemon name is obligatory');
+  } catch (e) {
+    res.status(500).send("Could not create the pokemon");
+  }
 });
 
 module.exports = router;
