@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlltypes, filterCreated, orderAlph, filterType, filterStr } from "../../reducer/actions";
-import SearchBar from "../searchbar/searchBar";
+
 import styles from "./Filters.module.css"
 
 const Filters = ({setCurrentPage, setOrder}) =>{
@@ -41,9 +41,7 @@ const Filters = ({setCurrentPage, setOrder}) =>{
 
     return (
         <div className={styles.filters}>
-            <div>
-                <SearchBar />
-            </div>
+            
 
             <div>
                 <h3>Filters</h3>

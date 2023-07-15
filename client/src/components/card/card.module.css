@@ -1,4 +1,30 @@
-.typesImg {
-    width: 2vw;
-    height: 2vw;
+.img{
+    width: 15vw;
+    height: 15vw;
+    
 }
+
+.cardBg{
+    background:#f2f7ff ;
+    border-radius: 10px 10px 10px 10px;
+    background: linear-gradient(180deg,#ffffff 10%, #005fff 110%);
+    box-shadow: -2px 17px 16px -2px rgba(0,0,0,0.42);
+}
+
+.typesContainer {
+    display:inline-flex;
+    justify-content: space-around;
+  }
+  
+  .typestext {
+    background: #eaeaea; 
+    margin: 0 5px;
+    padding: 5px 10px; 
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .id{
+    color: gray;
+    font-weight: bold;
+    text-decoration: none;
+  }

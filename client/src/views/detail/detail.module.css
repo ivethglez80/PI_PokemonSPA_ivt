@@ -1,0 +1,108 @@
+
+
+
+
+.detailAll{
+  background-image: linear-gradient(180deg, rgba(161, 159, 245, 0.8) 0%, rgba(152, 215, 255, 0.8) 100%), url('../../img/labStadium.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+.detailCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+  margin-top: 50px;
+  position: absolute;
+  top: 10%;
+  /* background: rgba(242, 247, 255, 0.2); */
+  border-radius: 10px 10px 10px 10px;
+  background: linear-gradient(90deg,rgba(242, 247, 255, 0.1) 10%, #005fff 160%);
+  box-shadow: -2px 17px 16px -2px rgba(0,0,0,0.5);
+}
+
+.derecha {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  padding-left: 15px;
+}
+
+.divtypes {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divstats {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn{
+  
+  width: 200px;
+  height: 50px;
+  border-color: #6f93d1;
+  background-color: rgb(148, 191, 255);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ .btn img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+} 
+
+.divbtn{
+  padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

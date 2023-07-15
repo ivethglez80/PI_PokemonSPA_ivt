@@ -13,7 +13,7 @@ const dispatch = useDispatch();
 const allPokemons = useSelector((state)=>state.pokemons)
 
 const [currentPage, setCurrentPage] = useState(1);
-const [order, setOrder] = useState("12");
+const [order, setOrder] = useState("6");
 
     useEffect(()=>{
         dispatch(getPokemons())
@@ -31,6 +31,7 @@ const [order, setOrder] = useState("12");
 
     return(
         <div>
+         <div className={styles.background}>
         <Nav />
         <div>
             <Filters setCurrentPage={setCurrentPage} setOrder={setOrder}/>
@@ -55,6 +56,7 @@ const [order, setOrder] = useState("12");
                }) 
             }
 
+        </div>
         </div>
         </div>
     )

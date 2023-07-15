@@ -1,0 +1,18 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    gap: 50px;
+}
+
+.background{
+    background-size: linear-gradient(180deg, #2af598 0%, #009efd 100%);;
+    position: absolute;
+    background-image: linear-gradient(180deg, rgba(161, 159, 245, 0.8) 0%, rgba(152, 215, 255, 0.8) 100%), url('../../img/labStadium.png');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }

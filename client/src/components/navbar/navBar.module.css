@@ -1,0 +1,25 @@
+.navaround {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .img {
+    margin-right: 10px;
+    height: 30%;
+    width: 30%;
+  }
+  
+  .crea,
+  .abdev,
+  .busca {
+    display: inline-flex;
+    align-items:end;
+  }
+  
+  .nav{
+    background:#f2f7ff ;
+    border-radius: 10px 10px 10px 10px;
+    background: linear-gradient(180deg,#ffffff 10%, #005fff 110%);
+    box-shadow: -2px 17px 16px -2px rgba(0,0,0,0.42);
+  }

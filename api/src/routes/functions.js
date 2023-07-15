@@ -32,7 +32,7 @@ const getApiInfo = async () => {
             return {
                 id: pokemon.data.id,
                 name: pokemon.data.name,
-                img: pokemon.data.sprites.other.home.front_default,
+                img: pokemon.data.sprites.other.dream_world.front_default,
                 types: pokemon.data.types.map(e => {
                     return ({
                         name: e.type.name,
@@ -62,7 +62,7 @@ async function getPokemonDetail(arg) {
         const pokemonData = {
             id: data.id,
             name: data.name,
-            img: data.sprites.other.home.front_default,
+            img: data.sprites.other.dream_world.front_default,
             types: data.types.map(e => {
                 return ({
                     name: e.type.name,
