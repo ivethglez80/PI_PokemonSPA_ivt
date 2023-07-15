@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import Pokemonlogo from "../../img/Pokemonlogo.png"
 import styles from "./navBar.module.css"
 import SearchBar from "../searchbar/searchBar";
+import devChsImg from "../../img/devChsImg.png";
+import createImg from "../../img/createImg.png";
 
 const Nav = () =>{
     return (
@@ -16,7 +18,9 @@ const Nav = () =>{
 
                     <div className={styles.crea} >
                     <Link to="/pokemonCreate">
-                        <button className={styles.btn}>Create a Pokemon</button>
+                        <button className={styles.comic}>
+                            <img className={styles.createImg} src={createImg} alt="create a pokemon button" />
+                        </button>
                     </Link>
                     </div>
 
@@ -24,9 +28,11 @@ const Nav = () =>{
                     <SearchBar />
                     </div>
 
-                    <div className={styles.abdev} >
+                    <div className={styles.abDev} >
                     <Link to="/aboutdev">
-                        <button className={styles.btn}>Dev, I chose you!</button>
+                        <button className={styles.comic}>
+                            <img className={styles.imgDev} src={devChsImg} alt="about me button" />
+                        </button>
                     </Link>
                     </div>
                 </div>

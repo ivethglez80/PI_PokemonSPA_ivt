@@ -50,16 +50,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'PocketMonk-15ze';
+  color: #222222;
+  font-size: 50px;
+  -webkit-text-stroke: 0.1px #fed53c;
+  text-stroke: 0.1px #fed53c;
+}
+.divstats h6{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .btn{
-  
   width: 200px;
   height: 50px;
   border-color: #6f93d1;
   background-color: rgb(148, 191, 255);
   border-radius: 5px;
   cursor: pointer;
+}
+.btn:hover {
+  background-color: #cdd5ff;
+  border: 2px solid #2f5ec2;
+  box-shadow: 5px 5px 0px #5b59e9;
+  scale: 1;
 }
 
  .btn img{
@@ -72,8 +86,27 @@
   padding-top: 20px;
 }
 
+@font-face {
+  font-family: 'PocketMonk-15ze';
+  src: url('../../Font/PocketMonk-15ze.ttf') format('truetype');
+}
 
+.pokeNameTxt{
+  font-family: 'PocketMonk-15ze';
+  color: #fed53c;
+  font-size: 50px;
+  -webkit-text-stroke: 1px #f4292c;
+  text-stroke: 1px #f4292c;
+}
 
+.typestext {
+  margin: 0 5px;
+  font-family: 'PocketMonk-15ze';
+  color: #fed53c;
+  font-size: 50px;
+  -webkit-text-stroke: 1px #204c88;
+  text-stroke: 1px #204c88;
+}
 
 
 

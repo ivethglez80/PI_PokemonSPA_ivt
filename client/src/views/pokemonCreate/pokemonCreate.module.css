@@ -1,0 +1,92 @@
+.allform{
+    background-image: linear-gradient(180deg, rgba(161, 159, 245, 0.8) 0%, rgba(152, 215, 255, 0.8) 100%), url('../../img/labStadium.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+.btn{
+  
+    width: 200px;
+    height: 50px;
+    border-color: #6f93d1;
+    background-color: rgb(148, 191, 255);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #cdd5ff;
+    border: 2px solid #0e3383;
+    box-shadow: 5px 5px 0px #19179e;
+    scale: 1;
+  }
+  
+   .btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  } 
+
+  .divbtn{
+    padding-top: 20px;
+  }
+
+  .formBox{
+    border-radius: 10px ;
+    background: linear-gradient(90deg,rgba(242, 247, 255, 0.1) 10%, #005fff 160%);
+    box-shadow: -2px 17px 16px -2px rgba(0,0,0,0.5);
+    padding: 40px;
+    margin-top: 30px;
+  }
+
+  @font-face {
+    font-family: 'PocketMonk-15ze';
+    src: url('../../Font/PocketMonk-15ze.ttf') format('truetype');
+  }
+
+  .labelForm{
+  font-family: 'PocketMonk-15ze';
+  color: #fed53c;
+  font-size: 20px;
+  -webkit-text-stroke: 1px #f4292c;
+  text-stroke: 1px #f4292c;
+  }
+
+  .labelFormS{
+
+  }
+
+  .selectDiv{
+
+  }
+
+  .divBtn{
+   padding-top: 20px;
+  }
+
+  .styleBtn{
+    width: 200px;
+    height: 50px;
+    border-color: #6f93d1;
+    background-color: rgb(148, 191, 255);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .styleBtn:hover {
+    background-color: #cdd5ff;
+    border: 2px solid #123583;
+    box-shadow: 5px 5px 0px #17167c;
+    scale: 1;
+  }
+
+  .imgBtn{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }

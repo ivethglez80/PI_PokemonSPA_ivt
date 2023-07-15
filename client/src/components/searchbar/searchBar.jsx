@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanPokemons, getPokemonByName } from "../../reducer/actions";
 import styles from "./searchBar.module.css"
+import pkmnLupaImg from "../../img/pkmnLupaImg.png";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -22,10 +23,12 @@ const SearchBar = () => {
     }
 
     return(
-        <div>
+        <div className={styles.srchDiv}>
             <form onSubmit={e=>{handleSubmit(e)}}>
-                <input type="text" placeholder="Search" onChange={e=>{handleInputchange(e)}} value={name}/>
-                <button type="submit">Search</button>
+                <input className={styles.inputDiv} type="text" placeholder="Search" onChange={e=>{handleInputchange(e)}} value={name}/>
+                <button type="submit" className={styles.searchBtn}>
+                    <img className={styles.searchBtnImg} src={pkmnLupaImg} alt="search button" />
+                </button>
             </form>
         </div>
     );

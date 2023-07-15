@@ -1,0 +1,40 @@
+.srchDiv{
+    display:flex;
+    flex-wrap: nowrap;
+    
+}
+
+.searchBtn {
+    border: 2px solid #00418b;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px #00418b;
+    transition: all 0.3s ease;
+    scale: 0.9;
+    padding: 5px;    
+}
+
+.searchBtnImg{
+    width: 30px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.searchBtnImg:hover {
+    background-color: #fff;
+    border: 2px solid #fff;
+    box-shadow: 5px 5px 0px #fff;
+    scale: 1;
+  }
+  
+  .searchBtnImg:active {
+    background-color: #fff;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+  .inputDiv{
+    border-color: blue;
+    width: 180px;
+    height: 25px;
+    margin-top: 50%;
+}

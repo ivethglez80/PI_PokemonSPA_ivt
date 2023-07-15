@@ -3,6 +3,10 @@ import {Link, useHistory} from "react-router-dom";
 import {getAlltypes, postPokemon, cleanPokemons} from "../../reducer/actions";
 import {useDispatch, useSelector} from "react-redux";
 import styles from "./pokemonCreate.module.css"
+import backToHomeButtonImg from "../../img/BacktoHomeButtonImg.png";
+import pokeCreatorImg from "../../img/pokeCreatorImg.png";
+import crtBtn from "../../img/crtBtn.png";
+
 
 
 export default function PokemonCreate(){
@@ -130,45 +134,54 @@ console.log({errors});
     }, [dispatch]);
 
     return (
-        <div>
+        <div className={styles.allform}>
+            <div  className={styles.divbtn}>
             <Link to="/home">
-                <button>Go back Home</button>
+                <button className={styles.btn}>
+                    <img src={backToHomeButtonImg} alt="Back to Home" />
+                </button>
             </Link>
-            <form onSubmit={e=>{handleSubmit(e);}}>
-                <h3>The Pokemon creator form</h3>
+            </div>
 
-                <label>Name:</label>
+        <div className={styles.formBox}>
+            <form onSubmit={e=>{handleSubmit(e);}}>
+                <div>
+                <img src={pokeCreatorImg} alt="pokemon Creator Form" />
+                </div>
+
+                <label className={styles.labelForm}>NAME:</label>
                 <input type="text" value={input.name} name="name" onChange={e=>{handleChange(e);}} placeholder="Name" />
                 <p>{errors.name}</p>
 
-                <label>HP:</label>
+                <label className={styles.labelForm}>HP:</label>
                 <input type="number" value={input.hp} name="hp" onChange={e=>{handleChange(e);}} placeholder="HP" />
                 <p>{errors.hp}</p>
 
-                <label>ATTACK:</label>
+                <label className={styles.labelForm}>ATTACK:</label>
                 <input type="number" value={input.attack} name="attack" onChange={e=>{handleChange(e);}} placeholder="ATTACK" />
                 <p>{errors.attack}</p>
 
-                <label>DEFENSE:</label>
+                <label className={styles.labelForm}>DEFENSE:</label>
                 <input type="number" value={input.defense} name="defense" onChange={e=>{handleChange(e);}} placeholder="DEFENSE" />
                 <p>{errors.defense}</p>
 
-                <label>SPEED:</label>
+                <label className={styles.labelForm}>SPEED:</label>
                 <input type="number" value={input.speed} name="speed" onChange={e=>{handleChange(e);}} placeholder="SPEED" />
                 <p>{errors.speed}</p>
 
-                <label>HEIGHT:</label>
+                <label className={styles.labelForm}>HEIGHT:</label>
                 <input type="number" value={input.height} name="height" onChange={e=>{handleChange(e);}} placeholder="HEIGHT" />
                 <p>{errors.height}</p>
 
-                <label>WEIGTH:</label>
+                <label className={styles.labelForm}>WEIGTH:</label>
                 <input type="number" value={input.weight} name="weight" onChange={e=>{handleChange(e);}} placeholder="WEIGHT" />
                 <p>{errors.weight}</p>
 
-                <label>IMAGE:</label>
+                <label className={styles.labelForm}>IMAGE:</label>
                 <input type="text" value={input.img} name="img" onChange={e=>{handleChange(e);}} placeholder="URL IMAGE" />
                 <p>{errors.img}</p>
 
+                <div className={styles.selectDiv}>
                 <select onChange={e=>{handleSelect(e);}}>
                     <option> Select type </option>
                     
@@ -187,8 +200,16 @@ console.log({errors});
                     );
                 })
                 }
-                <button type="submit">Create</button>
+                </div>
+
+                <div className={styles.divBtn}>
+                <button type="submit" className={styles.styleBtn}>
+                    <img className={styles.imgBtn} src={crtBtn} alt="create button" />
+                </button>
+                </div>
+
             </form>
+            </div>
         </div>
     );
 };

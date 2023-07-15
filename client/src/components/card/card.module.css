@@ -16,11 +16,28 @@
     justify-content: space-around;
   }
   
+  @font-face {
+    font-family: 'PocketMonk-15ze';
+    src: url('../../Font/PocketMonk-15ze.ttf') format('truetype');
+  }
+
+  .pokeNameTxt{
+    font-family: 'PocketMonk-15ze';
+    color: #fed53c;
+    font-size: 30px;
+    -webkit-text-stroke: 1px #f4292c;
+    text-stroke: 1px #f4292c;
+  }
   .typestext {
     background: #eaeaea; 
     margin: 0 5px;
     padding: 5px 10px; 
     border-radius: 10px 10px 10px 10px;
+    font-family: 'PocketMonk-15ze';
+    color: #fed53c;
+    font-size: 20px;
+    -webkit-text-stroke: 1px #204c88;
+    text-stroke: 1px #204c88;
   }
 
   .id{

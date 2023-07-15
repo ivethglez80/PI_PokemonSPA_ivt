@@ -1,0 +1,160 @@
+
+    .container {
+        display: grid; 
+        grid-template-columns: 0.4fr 1.0fr 1fr 0.2fr 1.2fr 2.2fr 0.4fr; 
+        grid-template-rows: 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+          ". . . . . . ."
+          ". devImg devImg . devTxt devTxt ."
+          ". devName devName . devTch devTch ."
+          ". . divbtn divbtn divbtn . ."
+          ". . . . . . .";    
+  }
+
+  .background{
+      background-size: linear-gradient(180deg, #2af598 0%, #009efd 100%);;
+      position: absolute;
+      background-image: linear-gradient(180deg, rgba(161, 159, 245, 0.8) 0%, rgba(152, 215, 255, 0.8) 100%), url('../../img/labStadium.png');
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+   
+  }
+  
+  .devImg {
+    
+    grid-area: devImg; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .devImgP{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .devTxt { 
+    background-color:rgba(243, 243, 243,0.5);
+    border-radius: 20px;
+    grid-area: devTxt; 
+    height: 100%;
+    font-family: 'windows_command-prompt';
+    font-size: 20px;
+    color: #5c350a;
+   }
+
+   .devTxtIn{
+
+   }
+  
+  .devTch { 
+    
+    grid-area: devTch; 
+    display: flex;
+    align-items:baseline;
+    flex-wrap: nowrap;   
+  }
+  .devTchImg{
+    width: 25%;
+    height: auto;
+    object-fit:contain;
+    margin: 1px;
+  }
+  
+  .devLinks { 
+    grid-area: devLinks; 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+     margin-top: 40px;
+   }
+  
+   @font-face {
+    font-family: 'PocketMonk-15ze';
+    src: url('../../Font/PocketMonk-15ze.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'windows_command-prompt';
+    src: url('../../Font/windows_command_prompt.ttf') format('trueType');
+  }
+  .devName { 
+    grid-area: devName; 
+    font-family: 'PocketMonk-15ze';
+    color: #D36C5D;
+    font-size: 30px;
+    -webkit-text-stroke: 1px #5e2d2d;
+    text-stroke: 1px #5e2d2d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+   }
+
+   .devName h3,
+   .devName p {
+     margin: 0;
+   }
+
+
+
+.btn{
+    width: 200px;
+    height: 50px;
+    border-color: #6B3A00;
+    background-color: #D36C5D;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+   
+  }
+  
+  .btn:hover {
+    background-color: #f5ebeb;
+    border: 2px solid #7a480c;
+    box-shadow: 5px 5px 0px #8a5454;
+    scale: 1;
+  }
+
+   .btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  } 
+  
+  .divbtn{
+    
+    grid-area: divbtn;
+    position: relative;
+  }
+
+  .devlnksImg{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  
+
+.redesbtn{
+    width: 100px;
+    height: 25px;
+    border-color: #a07535;
+    background-color: #D36C5D;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+   
+  }
+  
+  .redesbtn:hover {
+    background-color: #b17b7b;
+    border: 2px solid #6B3A00;
+    box-shadow: 5px 5px 0px #8a5454;
+    scale: 1;
+  }

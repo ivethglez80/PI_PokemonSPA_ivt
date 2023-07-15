@@ -28,7 +28,7 @@ const Detail = (props) => {
 
           <div className={styles.derecha}>
           <img src={myPoke[0].img ? myPoke[0].img : imgNotFound} alt="img not found" height="250px" width="250px"/>
-          <h3>{myPoke[0].name.charAt(0).toUpperCase() + myPoke[0].name.slice(1)}</h3>
+          <h3 className={styles.pokeNameTxt}>{myPoke[0].name.charAt(0).toUpperCase() + myPoke[0].name.slice(1)}</h3>
           </div>
 
           <div className={styles.divtypes}>
@@ -37,7 +37,7 @@ const Detail = (props) => {
               return (
                 <div key={k}>
                   {/* <img src={p.img} alt="X" /> */}
-                  <p>{p.name.charAt(0).toUpperCase() + p.name.slice(1)}</p>
+                  <p className={styles.typestext}>{p.name.charAt(0).toUpperCase() + p.name.slice(1)}</p>
                 </div>
               );
             })}

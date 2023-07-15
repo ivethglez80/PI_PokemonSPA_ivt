@@ -5,6 +5,7 @@ import Nav from "../../components/navbar/navBar"
 import Card from "../../components/card/Card"
 import styles from "./home.module.css";
 import Filters from "../../components/filters/Filters"
+import devChsImg from "../../img/devChsImg.png";
 
 
 

@@ -16,7 +16,7 @@ export default function Card({ name, image, types, id }) {
             height="250vh"
           />
           <div className={styles.cardBg}>
-            <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+            <h3 className={styles.pokeNameTxt}>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
             <div className={styles.tarjeta}>
               <div className={styles.typesContainer}>
                 <p className={styles.id}>{id}</p>
