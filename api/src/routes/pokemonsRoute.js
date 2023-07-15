@@ -35,41 +35,35 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    console.log ("entre al post");
-    const {name, hp, attack, defense, speed, height, weight, img, type} = req.body;
-    console.log(`obtuve el nombre ${name}`)
-    try {
-        if(name) {
-            console.log("entre al if");
-            const allPoke = await getAllPokemon();
-            console.log("traje allpoke");
-            const isPoke = allPoke.find(e => e.name === name.toLowerCase());
-            if (!isPoke) {
-                const pokemon = await Pokemon.create({
-                        name,
-                        hp,
-                        attack,
-                        defense,
-                        speed,
-                        height,
-                        weight,
-                        img 
-                });
-                const typeDb = await Type.findOne({
-                    where: {
-                      name: type.toLowerCase(), 
-                    },
-                  });              
-                console.log(typeDb)
-        await pokemon.addType(typeDb);
-        return res.status(201).send(pokemon);
-      }
-      return res.status(404).send('Pokemon name already exists');
+  const {name, hp, attack, defense, speed, height, weight, img, type} = req.body;
+  try {
+      if(name) {
+          console.log("entre al if");
+          const allPoke = await getAllPokemon();
+          console.log("traje allpoke");
+          const isPoke = allPoke.find(e => e.name === name.toLowerCase());
+          if (!isPoke) {
+              const pokemon = await Pokemon.create({
+                      name, hp, attack, defense, speed, height, weight, img 
+              });
+              console.log(typeof(type));
+              const typeDb = await Type.findAll({
+                  where: { name: type.toLowerCase()},
+                });              
+              console.log(typeof(typeDb))
+              if (typeDb.length>0){
+                await pokemon.addType(typeDb)
+              }else{
+                console.log("kind of pokemon doesn't exists")
+              }
+    //   await pokemon.addType(typeDb);
+      return res.status(201).send(pokemon);
     }
-    if (!name) return res.status(404).send('Pokemon name is obligatory');
-  } catch (e) {
-    res.status(500).send("Could not create the pokemon");
+    return res.status(404).send('Pokemon name already exists');
   }
+  if (!name) return res.status(404).send('Pokemon name is obligatory');
+} catch (e) {
+  res.status(500).send("Could not create the pokemon");
+}
 });
-
 module.exports = router;

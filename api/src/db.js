@@ -37,6 +37,8 @@ const { Pokemon, Type } = sequelize.models;
 Pokemon.belongsToMany(Type, {through: 'pokemons_type'});
 Type.belongsToMany(Pokemon, {through: 'pokemons_type'});
 
+
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize,    
