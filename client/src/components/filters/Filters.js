@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAlltypes, filterCreated, orderAlph, filterType, filterStr } from "../../reducer/actions";
+import { getAlltypes, filterCreated, orderAlph, filterType, filterAttack } from "../../reducer/actions";
 
 import styles from "./Filters.module.css"
 
@@ -32,9 +32,9 @@ const Filters = ({setCurrentPage, setOrder}) =>{
         setCurrentPage(1);
     };
 
-    const handleFilterStr = (e) =>{
+    const handleFilterAttack = (e) =>{
         e.preventDefault();
-        dispatch(filterStr(e.target.value));
+        dispatch(filterAttack(e.target.value));
         setCurrentPage(1);
         setOrder(e.target.value);
     };
@@ -69,8 +69,8 @@ const Filters = ({setCurrentPage, setOrder}) =>{
                 <h4> Order </h4>
                 <select>
                     <option> Strength </option>
-                    <option value="asc"  onClick={e=>handleFilterStr(e)} > ASC </option>
-                    <option value="desc" onClick={e=>handleFilterStr(e)}> DESC </option>
+                    <option value="asc"  onClick={e=>handleFilterAttack(e)} > ASC </option>
+                    <option value="desc" onClick={e=>handleFilterAttack(e)}> DESC </option>
                 </select>
 
                 <select>

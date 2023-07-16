@@ -6,7 +6,7 @@ export const GET_ALLTYPES = "GET_ALLTYPES";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const ORDER_ALPH = "ORDER_ALPH";
 export const FILTER_TYPE = "FILTER_TYPE";
-export const ORDER_STR = "ORDER_STR";
+export const ORDER_ATTACK = "ORDER_ATTACK";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const POST_POKEMON = "POST_POKEMON";
 export const GET_DETAILS = "GET_DETAILS";
@@ -52,28 +52,28 @@ export const getAlltypes = ()=>{
 export const filterCreated = (payload)=>{
     return{
         type: FILTER_CREATED,
-        payload
+        payload : payload
     }
 };
 
 export const orderAlph = (payload)=>{
     return{
         type: ORDER_ALPH,
-        payload
+        payload: payload
     }
 }
 
 export const filterType = (payload)=>{
     return{
         type: FILTER_TYPE,
-        payload
+        payload: payload
     }
 };
 
-export const filterStr = (payload)=>{
+export const filterAttack = (payload)=>{
     return {
-        type : ORDER_STR,
-        payload
+        type : ORDER_ATTACK,
+        payload: payload
     }
 };
 
@@ -95,8 +95,6 @@ export const postPokemon = (payload)=>{
     return async (dispatch)=>{
         try{
             let createPoke = await axios.post('http://localhost:3001/pokemons', payload);
-            console.log("holis");
-            console.log(createPoke);
             alert("new Pokemon was created");
             return dispatch({
                 type: POST_POKEMON,
