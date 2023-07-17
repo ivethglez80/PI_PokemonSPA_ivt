@@ -78,8 +78,8 @@ async function getPokemonDetail(arg) {
             height: data.height,
             weight: data.weight,
         };
-        console.log("estoy en getPokemonDetail en functions, lo que sigue es types");
-        console.log(types);
+        
+        
         return pokemonData;
     } catch (e) {
         console.log(e);
@@ -88,28 +88,34 @@ async function getPokemonDetail(arg) {
 
 
 
-
 //TRAIGO TODOS LOS POKEMONES CREADOS DESDE LA BASE DE DATOS EN LA TABLA POKEMON, Y QUE INCLUYA LA TABLA TYPE CON SU ATRIBUTO NAME.
 const getDbInfo = async () => {
-    console.log("entre a buscar los poke en la DB");
-    return await Pokemon.findAll({
-        include: {
-            model: Type,
-            attributes: [],
-            through: {
-                attributes: [],
-            },
-        }
-    });
+    
+    try{
+        const dt = await Pokemon.findAll({
+           include: [Type]
+        })
+       const pokedb = dt.map((p)=>{
+           let json = p.toJSON();
+            return{
+               ...json,
+               types: p.types.map(type=>type.name).join(", ")//.map((e) => { return e.name})//
+            }
+        }) 
+        return pokedb;
+       }
+       catch(error){
+        return error
+       }
 }
 
 //TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
 const getAllPokemon = async () => {
-    console.log("estoy en functions en getallpokemon")
+    
     const apiInfo = await getApiInfo();
-    console.log("apiInfo ok");
+    
     const dbInfo = await getDbInfo();
-    console.log("dbinfo ok");
+    
     const allPokemon = apiInfo.concat(dbInfo);
     return allPokemon;
 };
@@ -118,5 +124,6 @@ module.exports = {
     getApiInfo,
     getDbInfo,
     getAllPokemon,
-    getPokemonDetail
+    getPokemonDetail,
+ 
 }

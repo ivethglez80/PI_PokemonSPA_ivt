@@ -5,14 +5,15 @@ import Nav from "../../components/navbar/navBar"
 import Card from "../../components/card/Card"
 import styles from "./home.module.css";
 import Filters from "../../components/filters/Filters"
-import devChsImg from "../../img/devChsImg.png";
+
 
 
 
 export default function Home(){
 const dispatch = useDispatch();
+console.log(typeof dispatch);
 const allPokemons = useSelector((state)=>state.pokemons)
-
+console.log(typeof allPokemons);
 const [currentPage, setCurrentPage] = useState(1);
 const [order, setOrder] = useState("6");
 
@@ -35,8 +36,8 @@ const [order, setOrder] = useState("6");
          <div className={styles.background}>
         <Nav />
         <div>
-            <Filters setCurrentPage={setCurrentPage} setOrder={setOrder}/>
-            console.log(setOrder);
+            <Filters/>
+            console.log(allPokemons);
             <button onClick={e=>{handleClick(e)}}>Clean Filters</button>
         </div>
         <div className={styles.cards}>
