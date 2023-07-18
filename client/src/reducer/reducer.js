@@ -51,22 +51,18 @@ const rootReducer = (state = initialState,action)=>{
                 types: action.payload
             }
         case FILTER_CREATED:
-            console.log("entre al filter case de reducer");
             let backup = state.allPokemons;
-            console.log(backup);
-            let sortDb;
-            console.log(typeof sortDb);
-            if (action.payload==="created"){
-                sortDb = backup.filter(e=>e.createdInDb);
-            }else if (action.payload==="api"){
-                sortDb=backup.filter(e => !e.createdInDb );
-            }else{
-                sortDb = backup;
-            }
-            return {
-                ...state,
-                pokemons: sortDb
-            };
+            let sortDb = backup; // Valor predeterminado
+            if (action.payload === "created") {
+                sortDb = backup.filter((e) => e.createdInBd);
+                } else if (action.payload === "api") {
+                  sortDb = backup.filter((e) => !e.createdInBd);
+                }
+                return {
+                  ...state,
+                  pokemons: sortDb,
+                };
+            
         case FILTER_TYPE:
             console.log("entre al filtertype case de reducer");
             let backup2 = state.pokemons;
@@ -82,21 +78,28 @@ const rootReducer = (state = initialState,action)=>{
                 ...state,
                 pokemons:sortType
             }
+            
         case ORDER_ALPH:
-            console.log("entre a ORDER_ALHP case de reducer");
+            
             let backup3 = state.pokemons;
-            console.log(backup3);
+            
             let sortAZ = action.payload==="asc"
             ? backup3.sort((a,b)=>{
-                return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+                if(a.name.toUpperCase() > b.name.toUpperCase()){ return 1}
+                if(b.name.toUpperCase() > a.name.toUpperCase()){ return -1}
+                else{return 0}
             })
             : backup3.sort((a,b)=>{
-                return b.name.toLowerCase().localeCompare(a.name.toLowerCase())
-            })
+                if(a.name.toUpperCase() > b.name.toUpperCase()){ return -1}
+                if(b.name.toUpperCase() > a.name.toUpperCase()){ return 1}
+                else{return 0}            })
+            console.log(sortAZ);
             return {
                 ...state,
                 pokemons:sortAZ
             };
+            
+
         case ORDER_ATTACK:
             console.log("entre a ORDER_ATTACK case de reducer");
             let backup4= state.pokemons;
