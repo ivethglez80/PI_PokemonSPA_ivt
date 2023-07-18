@@ -20,14 +20,15 @@ const getApiInfo = async () => {
                     url: e.url,
                 }
             })
-           // console.log("tengo los auxiliares");
+           
             pokemones.push(...auxPokemones);
-           // console.log("hice el array");
+           
             url = pokemonesApi.next;
-            //console.log(`next ${url}`);
+           
         } while (url != null && pokemones.length < 10); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
-        //console.log(pokemones);
+        
         let pokesWithData = await Promise.all(pokemones.map(async e => {
+           
             let pokemon = await axios.get(e.url);
             return {
                 id: pokemon.data.id,
@@ -47,6 +48,8 @@ const getApiInfo = async () => {
                 weight: pokemon.data.weight,
             }
         }));
+       
+
         //console.log(pokesWithData);
         return pokesWithData;
     } catch (e) {
@@ -89,12 +92,11 @@ async function getPokemonDetail(arg) {
 
 
 //TRAIGO TODOS LOS POKEMONES CREADOS DESDE LA BASE DE DATOS EN LA TABLA POKEMON, Y QUE INCLUYA LA TABLA TYPE CON SU ATRIBUTO NAME.
-const getDbInfo = async () => {
-    
+const getDbInfo = async () => {   
     try{
         const dt = await Pokemon.findAll({
            include: [Type]
-        })
+        })   
        const pokedb = dt.map((p)=>{
            let json = p.toJSON();
             return{
@@ -102,6 +104,7 @@ const getDbInfo = async () => {
                types: p.types.map(type=>type.name).join(", ")//.map((e) => { return e.name})//
             }
         }) 
+        
         return pokedb;
        }
        catch(error){

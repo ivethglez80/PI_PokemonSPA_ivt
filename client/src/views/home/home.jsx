@@ -11,19 +11,19 @@ import Filters from "../../components/filters/Filters"
 
 export default function Home(){
 const dispatch = useDispatch();
-console.log(typeof dispatch);
+
 const allPokemons = useSelector((state)=>state.pokemons)
-console.log(typeof allPokemons);
+
 const [currentPage, setCurrentPage] = useState(1);
-const [order, setOrder] = useState("6");
+const [order, setOrder] = useState("");
 
     useEffect(()=>{
         dispatch(getPokemons())
     },[dispatch]);
 
-    const formatID = (id) => {
-        return String(id).substring(0, 4); // Limita el ID a 4 caracteres
-    };
+    // const formatID = (id) => {
+    //     return String(id).substring(0, 4); // Limita el ID a 4 caracteres
+    // };
 
     const handleClick = (e) =>{
         e.preventDefault();
@@ -37,9 +37,10 @@ const [order, setOrder] = useState("6");
         <Nav />
         <div>
             <Filters/>
-            console.log(allPokemons);
+            
             <button onClick={e=>{handleClick(e)}}>Clean Filters</button>
         </div>
+        
         <div className={styles.cards}>
             {
                allPokemons?.map((p,k)=>{
@@ -47,7 +48,7 @@ const [order, setOrder] = useState("6");
                     <div key={k} className={styles.card}>
                         <Card
                             key={p.id}
-                            id={formatID(p.id)}
+                            id={p.id}
                             name={p.name}
                             image={p.img}
                             types={p.types}

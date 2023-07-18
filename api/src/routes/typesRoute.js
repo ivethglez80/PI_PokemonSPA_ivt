@@ -4,8 +4,8 @@ const { Type } = require('../db');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    
+/*middleware*/
+router.get('/', async (req, res) => {   
   try {
     const apiType = await axios.get('https://pokeapi.co/api/v2/type');
     const apiTypeInfo = apiType.data;

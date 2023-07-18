@@ -32,16 +32,20 @@ const Detail = (props) => {
           </div>
 
           <div className={styles.divtypes}>
-          <h4>
-            {myPoke[0].types?.map((p, k) => {
-              return (
-                <div key={k}>
-                  {/* <img src={p.img} alt="X" /> */}
-                  <p className={styles.typestext}>{p.name.charAt(0).toUpperCase() + p.name.slice(1)}</p>
-                </div>
-              );
-            })}
-          </h4>
+         {
+               myPoke[0].types &&
+               (typeof myPoke[0].types === 'string' ? (
+                 <div className={styles.types}>
+                   <p className={styles.typestext}> {myPoke[0].types.charAt(0).toUpperCase() + myPoke[0].types.slice(1)} </p>
+                 </div>
+               ) : (
+                myPoke[0].types.map((p, k) => (
+                   <div className={styles.types} key={k}>
+                     <p className={styles.typestext}> {p.name.charAt(0).toUpperCase() + p.name.slice(1)} </p>
+                   </div>
+                 ))
+               ))
+                }
           </div>
 
           <div className={styles.divstats}>

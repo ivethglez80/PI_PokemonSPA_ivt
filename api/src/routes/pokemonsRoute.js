@@ -59,7 +59,7 @@ router.post('/', async (req, res, next) => {
       await newPoke.addType(dbtype);
     }
 
-    console.log(type);
+    console.log(typeof dbtype);
     res.status(200).send(newPoke);
     return newPoke;
   } catch (error) {

@@ -74,25 +74,29 @@ console.log({errors});
         }))
     };
 
-    const handleSelect = e =>{
-        if (input.types.length<2){
+    const handleSelect = e => {
+        const selectedType = types.find(type => type.name === e.target.value);
+        console.log(input.types);
+        if (selectedType) {
+          if (input.types.length < 2) {
             setInput({
-                ...input,
-                types: [...input.types, e.target.value]
+              ...input,
+              types: [...input.types, selectedType]
             });
             e.target.value = "Select Type";
-        }else{
+          } else {
             alert("You can select up to two type options.");
-            // setErrorText("You can select up to two type options.");
-            // setTimeout(() => {
-            //   setErrorText(null);
-            // }, 3000); 
+          }
+        } else {
+          alert("Invalid type selected.");
         }
-    };
+      };
+      
+      
 
     const handleSubmit = e =>{
         e.preventDefault();
-
+console.log(types);
         if (!errors.name &&
             !errors.hp &&
             !errors.attack &&
@@ -191,15 +195,12 @@ console.log({errors});
                         );
                     })}
                 </select>
-                {input.types.map(e=>{
-                    return(
-                        <div key={e}>
-                            <p>{e}</p>
-                            <button onClick={()=>{handleDelete(e);}}>x</button>
-                        </div>
-                    );
-                })
-                }
+                {input.types.map((type, index) => (
+                <div key={index}>
+                    <p>{type.name}</p>
+                        <button onClick={() => handleDelete(types)}>x</button>
+                </div>
+                ))}
                 </div>
 
                 <div className={styles.divBtn}>
