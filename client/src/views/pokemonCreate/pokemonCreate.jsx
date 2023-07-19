@@ -61,13 +61,13 @@ export default function PokemonCreate(){
         }
     return errors;
 };
-console.log({errors});
 
     const handleChange = e =>{
         setInput({
             ...input,
             [e.target.name]: e.target.value
         });
+    
         setErrors(validate({
             ...input,
             [e.target.name]: e.target.value
@@ -76,13 +76,12 @@ console.log({errors});
 
     const handleSelect = e => {
         const selectedType = types.find(type => type.name === e.target.value);
-        console.log(input.types);
         if (selectedType) {
           if (input.types.length < 2) {
-            setInput({
+            setInput(input=>({
               ...input,
               types: [...input.types, selectedType]
-            });
+            }));
             e.target.value = "Select Type";
           } else {
             alert("You can select up to two type options.");
@@ -96,7 +95,7 @@ console.log({errors});
 
     const handleSubmit = e =>{
         e.preventDefault();
-console.log(types);
+
         if (!errors.name &&
             !errors.hp &&
             !errors.attack &&
@@ -198,7 +197,7 @@ console.log(types);
                 {input.types.map((type, index) => (
                 <div key={index}>
                     <p>{type.name}</p>
-                        <button onClick={() => handleDelete(types)}>x</button>
+                        <button onClick={() => handleDelete(type)}>x</button>
                 </div>
                 ))}
                 </div>

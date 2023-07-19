@@ -1,67 +1,3 @@
-// import React, {useState ,useEffect} from "react";
-// import {useDispatch, useSelector} from "react-redux";
-// import { cleanPokemons ,getPokemons } from "../../reducer/actions";
-// import Nav from "../../components/navbar/navBar"
-// import Card from "../../components/card/Card"
-// import styles from "./home.module.css";
-// import Filters from "../../components/filters/Filters"
-
-
-
-
-// export default function Home(){
-// const dispatch = useDispatch();
-
-// const allPokemons = useSelector((state)=>state.pokemons);
-// console.log("quienes son allPokemons:");
-// console.log(allPokemons);
-// const [currentPage, setCurrentPage] = useState("1");
-// const [order, setOrder] = useState("1");
-
-//     useEffect(()=>{
-//         dispatch(getPokemons())
-//     },[dispatch]);
-
-//     const handleClick = (e) =>{
-//         e.preventDefault();
-//         dispatch(cleanPokemons(dispatch));
-//         dispatch(getPokemons());
-//     };
-
-//     return(
-//         <div>
-//          <div className={styles.background}>
-//             <Nav />
-//         <div>
-//             <Filters  setOrder={setOrder}/>
-//             <button onClick={e=>{handleClick(e)}}>Clean Filters</button>
-//         </div>
-        
-//         <div className={styles.cards}>
-//             {
-//                allPokemons?.map((p,k)=>{
-//                 return (
-//                     <div key={k} className={styles.card}>
-//                         <Card
-//                             key={p.id}
-//                             id={p.id}
-//                             name={p.name}
-//                             image={p.img}
-//                             types={p.types}
-//                         />
-
-//                     </div>
-//                 )
-//                }) 
-//             }
-
-//         </div>
-//         </div>
-//         </div>
-//     )
-// }
-
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -76,15 +12,23 @@ import {
 import Nav from "../../components/navbar/navBar";
 import Card from "../../components/card/Card";
 import styles from "./home.module.css";
-import Filters from "../../components/filters/Filters";
+import Pagination from '../../components/pagination/pagination';
 
 export default function Home() {
   const dispatch = useDispatch();
-
   const allPokemons = useSelector((state) => state.pokemons);
   const allTypes = useSelector((state) => state.types);
-  const [currentPage, setCurrentPage] = useState(1);
+
   const [order, setOrder] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(5);
+  const indexOfLastPokemon = currentPage * pokemonsPerPage;
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+  const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
+
+    const page = pageNumber => {
+        setCurrentPage(pageNumber);
+    }
 
   useEffect(() => {
     dispatch(getPokemons());
@@ -169,19 +113,29 @@ export default function Home() {
           <button onClick={handleClick}>Clean Filters</button>
         </div>
 
-        <div className={styles.cards}>
-          {allPokemons?.map((p, k) => (
-            <div key={k} className={styles.card}>
+        <div className={styles.cardsContainer}>
+          {currentPokemons?.map((p) => (
+            <div key={p.id} className={styles.card}>
               <Card
                 key={p.id}
                 id={p.id}
                 name={p.name}
                 image={p.img}
+                attack={p.attack}
                 types={p.types}
               />
             </div>
           ))}
         </div>
+
+        <section className="pagescroll">
+             <Pagination
+              pokemonsPerPage={pokemonsPerPage}
+              allPokemons={allPokemons.length}
+              page={page}
+             />
+        </section>    
+
       </div>
     </div>
   );

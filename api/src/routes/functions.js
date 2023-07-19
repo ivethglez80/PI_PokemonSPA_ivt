@@ -2,33 +2,23 @@ const axios = require('axios');
 const { Pokemon, Type } = require('../db'); 
 
 //TRAIGO LOS DATOS DE LA API, HACIENDO OTRO LLAMADO A LA URL DEL POKEMON PARA QUE ME TRAIGA LOS DATOS NECESARIOS EN LA RUTA PRINCIPAL (NOMBRE, IMAGEN, TIPO).
-const getApiInfo = async () => {
-   // console.log("entre a getApiInfo");
+const getApiInfo = async () => {   
     try {
-        let url = 'https://pokeapi.co/api/v2/pokemon/';
-      //  console.log(url);
+        let url = 'https://pokeapi.co/api/v2/pokemon/';      
         let pokemones = [];
-        do {
-         //   console.log("antes de axios");
-            let info = await axios.get(url);
-           // console.log("despus de axios");
-            let pokemonesApi = info.data;
-            
+        do {         
+            let info = await axios.get(url);           
+            let pokemonesApi = info.data;            
             let auxPokemones = pokemonesApi.results.map(e => {
                 return {
                     name: e.name,
                     url: e.url,
                 }
-            })
-           
-            pokemones.push(...auxPokemones);
-           
-            url = pokemonesApi.next;
-           
-        } while (url != null && pokemones.length < 10); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER
-        
-        let pokesWithData = await Promise.all(pokemones.map(async e => {
-           
+            })           
+            pokemones.push(...auxPokemones);           
+            url = pokemonesApi.next;           
+        } while (url != null && pokemones.length < 60); //ACA PUEDO LIMITARLOS A LOS QUE QUIERA TRAER      
+        let pokesWithData = await Promise.all(pokemones.map(async e => {           
             let pokemon = await axios.get(e.url);
             return {
                 id: pokemon.data.id,
@@ -97,12 +87,14 @@ const getDbInfo = async () => {
         const dt = await Pokemon.findAll({
            include: [Type]
         })   
+        console.log(dt);
        const pokedb = dt.map((p)=>{
            let json = p.toJSON();
             return{
                ...json,
                types: p.types.map(type=>type.name).join(", ")//.map((e) => { return e.name})//
             }
+
         }) 
         
         return pokedb;
@@ -113,12 +105,9 @@ const getDbInfo = async () => {
 }
 
 //TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
-const getAllPokemon = async () => {
-    
-    const apiInfo = await getApiInfo();
-    
+const getAllPokemon = async () => {    
+    const apiInfo = await getApiInfo();    
     const dbInfo = await getDbInfo();
-    
     const allPokemon = apiInfo.concat(dbInfo);
     return allPokemon;
 };
