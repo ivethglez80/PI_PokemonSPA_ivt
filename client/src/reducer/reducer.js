@@ -62,23 +62,33 @@ const rootReducer = (state = initialState,action)=>{
                   ...state,
                   pokemons: sortDb,
                 };
-            
-        case FILTER_TYPE:
-            console.log("entre al filtertype case de reducer");
-            let backup2 = state.pokemons;
+
+case FILTER_TYPE:
+            const backup2 = state.allPokemons;  
+            console.log("este es el backup con el que inicio");          
             console.log(backup2);
             let sortType = action.payload ==="all" 
                 ? backup2
-                : backup2.filter(e=>e.types.some(e=>e.name===action.payload));
-            if (sortType.length<=0){
+                : backup2.filter(e=>{
+
+                if (Array.isArray(e.types)) {
+                    return e.types.some(e => e.name === action.payload);
+                } else {
+                    return e.types === action.payload;
+                }
+            });                                              
+                if (sortType.length<=0){
                 sortType=backup2;
-                console.log("There is no Pokemon of the indicated type");
-            };
+                console.log("no encontre coindidencias");
+                console.log(backup2);
+                alert("There is no Pokemon of the indicated type");
+                }
             return {
                 ...state,
                 pokemons:sortType
-            }
-            
+            };
+
+
         case ORDER_ALPH:
             
             let backup3 = state.pokemons;

@@ -95,6 +95,7 @@ export default function Home() {
     e.preventDefault();
     dispatch(cleanPokemons(dispatch));
     dispatch(getPokemons());
+    dispatch(getAlltypes(dispatch))
   };
 
   const handleFilterCreated = (e) => {
@@ -144,9 +145,7 @@ export default function Home() {
               <select onChange={handleFilterType}>
                 <option value="all"> ALL </option>
                 {allTypes?.map((e) => (
-                  <option key={e.id} value={e.name}>
-                    {e.name.toUpperCase()}
-                  </option>
+                  <option key={e.id} value={e.name}> {e.name.toUpperCase()} </option>
                 ))}
               </select>
             </div>
