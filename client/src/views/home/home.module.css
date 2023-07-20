@@ -1,18 +1,105 @@
-.cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
-    gap: 50px;
-}
-
-.background{
+.gridContainer{
+    grid-area: 3 / 1 / 19 / 15; 
     background-size: linear-gradient(180deg, #2af598 0%, #009efd 100%);;
     position: absolute;
     background-image: linear-gradient(180deg, rgba(161, 159, 245, 0.8) 0%, rgba(152, 215, 255, 0.8) 100%), url('../../img/labStadium.png');
     background-size: cover;
     height: 100%;
     width: 100%;
+}
+
+.containerFP{
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
   }
+
+
+.cardsContainer {
+    grid-area: 6 / 6 / 7 / 9;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    padding:20px;
+
+}
+
+
+.pagescroll{
+    grid-area: 17 / 4 / 18 / 11;    
+}
+
+
+
+.filtersNdivs{
+    grid-area: 4 / 1 / 6 / 15;
+    display: flex;
+    justify-content: space-around;    
+    padding: 10px 10px 10px 10px;
+    object-position: 50% 50%;
+}
+
+.orderDiv{
+    grid-area: 4 / 2 / 6 / 7;
+    display: flex;
+    justify-content: space-around;   
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    
+}
+
+.filtersDiv{
+    grid-area: 4 / 8 / 6 / 14;   
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+select{
+    height: 25px;
+}
+h4{
+    object-position: right;
+}
+
+
+
+label {
+    padding-left: 17px;
+}
+
+.btnAlone {
+    grid-area: 6 / 6 / 7 / 9;
+    border: 2px solid #24b4fb;
+    background-color: #b9e3f8;
+    border-radius: 2em;
+    transition: all ease-in-out 0.2s;
+    font-size: 15px;
+    height: 35px;
+   }
+   
+ .btnAlone span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+  .btnAlone:hover {
+    background-color: #4278ad;
+   }
+
+   .btncontainer{   
+    padding-bottom: 20px;
+   }
+
+
+

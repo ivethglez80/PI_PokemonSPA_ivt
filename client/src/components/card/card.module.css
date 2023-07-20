@@ -1,14 +1,15 @@
 .img{
-    width: 15vw;
-    height: 15vw;
+    width: 12vw;
+    height: 12vw;
     
 }
 
-.cardBg{
+.cardFull{
     background:#f2f7ff ;
     border-radius: 10px 10px 10px 10px;
     background: linear-gradient(180deg,#ffffff 10%, #005fff 110%);
     box-shadow: -2px 17px 16px -2px rgba(0,0,0,0.42);
+    padding: 10px;
 }
 
 .typesContainer {
@@ -21,14 +22,30 @@
     src: url('../../Font/PocketMonk-15ze.ttf') format('truetype');
   }
 
-  .pokeNameTxt{
-    font-family: 'PocketMonk-15ze';
+.nameDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+      font-family: 'PocketMonk-15ze';
     color: #fed53c;
-    font-size: 30px;
-    -webkit-text-stroke: 1px #f4292c;
-    text-stroke: 1px #f4292c;
+   -webkit-text-stroke: 1px #f4292c;
+   text-stroke: 1px #f4292c;
   }
-  .typestext {
+.pokeNameTxt-h3 {
+  font-size: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.pokeNameTxt-p {
+  font-size: 17px; /* Tamaño de texto más pequeño para el párrafo */
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+
+.typestext {
     background: #eaeaea; 
     margin: 0 5px;
     padding: 5px 10px; 
@@ -38,10 +55,10 @@
     font-size: 20px;
     -webkit-text-stroke: 1px #204c88;
     text-stroke: 1px #204c88;
-  }
+}
 
-  .id{
-    color: gray;
-    font-weight: bold;
-    text-decoration: none;
-  }
+.baseCard{
+  padding: 10px;
+}
+
+  

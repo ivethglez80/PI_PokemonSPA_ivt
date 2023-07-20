@@ -71,13 +71,14 @@ export default function Home() {
   };
 
   return (
-    <div>
+  <div className={styles.gridContainer}>
+    
       <div className={styles.background}>
-        <Nav />
-        <div>
-          <div className={styles.filters}>
-            <div>
-              <h3>Filters</h3>
+        <Nav className={styles.navDiv}/>
+        <div className={styles.filtersNdivs}>
+          
+              <h4>Filters</h4>
+              <div className={styles.filtersDiv}>
               <label>Created/Api</label>
               <select onChange={handleFilterCreated}>
                 <option value="all"> -ALL- </option>
@@ -92,26 +93,30 @@ export default function Home() {
                   <option key={e.id} value={e.name}> {e.name.toUpperCase()} </option>
                 ))}
               </select>
-            </div>
+              </div>
 
-            <div>
               <h4> Order </h4>
+              <div className={styles.orderDiv}>
+              <label> Strength </label>
               <select onChange={handleFilterAttack}>
                 <option value=""> Strength </option>
                 <option value="asc"> ASC </option>
                 <option value="desc"> DESC </option>
               </select>
 
-              <h4 className="Subtitulo">Filter by alphabet</h4>
+              <label> A to Z? </label>
               <select onChange={handleOrderAlph}>
                 <option value=""> ALL </option>
                 <option value="asc"> A-Z </option>
                 <option value="desc"> Z-A </option>
               </select>
-            </div>
-          </div>
-          <button onClick={handleClick}>Clean Filters</button>
+              </div>
+            
+
         </div>
+          <div className={styles.btncontainer}>
+          <button className={styles.btnAlone} onClick={handleClick}>Clean Filters</button>
+          </div>
 
         <div className={styles.cardsContainer}>
           {currentPokemons?.map((p) => (
@@ -127,16 +132,19 @@ export default function Home() {
             </div>
           ))}
         </div>
-
-        <section className="pagescroll">
+        
+        <div className={styles.pagescroll}>
+        <section className={styles.pagescrollButtons}>
              <Pagination
               pokemonsPerPage={pokemonsPerPage}
               allPokemons={allPokemons.length}
               page={page}
              />
         </section>    
+        </div>
 
       </div>
-    </div>
+    
+</div>
   );
 }
