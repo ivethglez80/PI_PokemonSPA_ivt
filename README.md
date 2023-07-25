@@ -2,6 +2,9 @@
 
 # **POKEMON** | Proyecto Individual
 
+have a look of a video with the finished product here: 
+https://www.linkedin.com/posts/iveth-gonzalez-98799895_javascript-redux-react-activity-7089720138811252736-gsE-?utm_source=share&utm_medium=member_desktop
+
 ## **📌 OBJETIVOS**
 
 -  Construir una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** y **Sequelize**.
