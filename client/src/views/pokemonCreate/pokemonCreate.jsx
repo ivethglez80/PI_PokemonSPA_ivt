@@ -105,7 +105,14 @@ export default function PokemonCreate(){
             !errors.weight &&
             !errors.img){
             
-            dispatch(postPokemon(input));
+            const typeNames = input.types.map(type=>type.name);
+            const newPokemon = {
+            ...input,
+            types: typeNames
+            };
+
+            console.log(newPokemon);
+            dispatch(postPokemon(newPokemon));
             setInput({
                 name:"",
                 hp:"",
@@ -117,7 +124,9 @@ export default function PokemonCreate(){
                 types:[],
                 img:""
             });
-            dispatch(cleanPokemons(dispatch));
+            
+            alert("Your Pokemons was succesfully created")
+            dispatch(cleanPokemons(dispatch));        
             history.push("/home");
             }else{
                 alert("error, check the form")
@@ -194,12 +203,15 @@ export default function PokemonCreate(){
                         );
                     })}
                 </select>
+
+                <div className={styles.choicesContainer}>
                 {input.types.map((type, index) => (
-                <div key={index}>
+                <div className={styles.choices} key={index}>
                     <p>{type.name}</p>
-                        <button onClick={() => handleDelete(type)}>x</button>
+                    <button onClick={() => handleDelete(type)}>x</button>
                 </div>
                 ))}
+                </div>
                 </div>
 
                 <div className={styles.divBtn}>

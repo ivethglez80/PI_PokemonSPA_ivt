@@ -48,6 +48,5 @@ module.exports = (sequelize) => {
     updatedAt: false,
   })
 
-  return Pokemon;
-};
-
+  return Pokemon
+}

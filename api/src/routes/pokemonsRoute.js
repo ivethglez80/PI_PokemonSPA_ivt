@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const { name, hp, attack, defense, speed, height, weight, img, type } = req.body;
+    const { name, hp, attack, defense, speed, height, weight, img, types } = req.body;
 
     const newPoke = await Pokemon.create({
       name,
@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
     });
 
     let dbtype = await Type.findOne({
-      where: { name: type },
+      where: { name: types },
     });    
     if (dbtype) {
       await newPoke.addType(dbtype);

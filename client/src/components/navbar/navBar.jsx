@@ -6,6 +6,7 @@ import SearchBar from "../searchbar/searchBar";
 import devChsImg from "../../img/devChsImg.png";
 import createImg from "../../img/createImg.png";
 
+
 const Nav = () =>{
     return (
         <header>

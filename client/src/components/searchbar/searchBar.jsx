@@ -15,12 +15,25 @@ const SearchBar = () => {
         console.log("Name", name );
     }
 
-    const handleSubmit = (e) =>{
+    // const handleSubmit = (e) =>{
+    //     e.preventDefault();
+    //     dispatch(cleanPokemons(dispatch));
+    //     dispatch(getPokemonByName(name));
+    //     setName("");
+    // }
+
+
+    const handleSubmit = async(e) =>{
         e.preventDefault();
         dispatch(cleanPokemons(dispatch));
-        dispatch(getPokemonByName(name));
-        setName("");
-    }
+        const pokemonFound = await dispatch(getPokemonByName(name));
+        if (pokemonFound){
+            setName("");
+        }else{
+            alert("Pokemon not found!");
+            setName("Search");
+        }
+    };
 
     return(
         <div className={styles.srchDiv}>

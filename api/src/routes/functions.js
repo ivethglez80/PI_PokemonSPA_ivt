@@ -83,16 +83,17 @@ async function getPokemonDetail(arg) {
 
 //TRAIGO TODOS LOS POKEMONES CREADOS DESDE LA BASE DE DATOS EN LA TABLA POKEMON, Y QUE INCLUYA LA TABLA TYPE CON SU ATRIBUTO NAME.
 const getDbInfo = async () => {   
+    console.log("obteniendo data de back");
     try{
         const dt = await Pokemon.findAll({
            include: [Type]
         })   
-        console.log(dt);
+        
        const pokedb = dt.map((p)=>{
            let json = p.toJSON();
             return{
                ...json,
-               types: p.types.map(type=>type.name).join(", ")//.map((e) => { return e.name})//
+               types: p.types.map(type=>type.name).join(", ")
             }
 
         }) 
