@@ -95,7 +95,7 @@ export const postPokemon = (payload)=>{
     return async (dispatch)=>{
         try{
             let createPoke = await axios.post('http://localhost:3001/pokemons', payload);
-            alert("new Pokemon was created");
+            
             return dispatch({
                 type: POST_POKEMON,
                 payload: createPoke.data

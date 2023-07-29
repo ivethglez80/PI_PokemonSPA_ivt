@@ -88,7 +88,7 @@ const getDbInfo = async () => {
         const dt = await Pokemon.findAll({
            include: [Type]
         })   
-        
+        console.log(`este es dt ${dt}`);
        const pokedb = dt.map((p)=>{
            let json = p.toJSON();
             return{
@@ -107,9 +107,12 @@ const getDbInfo = async () => {
 
 //TRAIGO TODOS LOS POKEMONES, TANTO DE LA API COMO DE LA DB.
 const getAllPokemon = async () => {    
-    const apiInfo = await getApiInfo();    
+    const apiInfo = await getApiInfo(); 
+    console.log(`este es apiInfo : ${apiInfo}`);   
     const dbInfo = await getDbInfo();
+    console.log(`este es dbinfo : ${dbInfo}`);  
     const allPokemon = apiInfo.concat(dbInfo);
+    console.log(allPokemon);
     return allPokemon;
 };
 

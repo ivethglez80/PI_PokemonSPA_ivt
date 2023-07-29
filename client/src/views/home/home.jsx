@@ -97,9 +97,9 @@ export default function Home() {
 
               <h4> Order </h4>
               <div className={styles.orderDiv}>
-              <label> Strength </label>
+              <label> Attack </label>
               <select onChange={handleFilterAttack}>
-                <option value=""> Strength </option>
+                <option value=""> Attack </option>
                 <option value="asc"> ASC </option>
                 <option value="desc"> DESC </option>
               </select>

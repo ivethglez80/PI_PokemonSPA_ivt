@@ -125,7 +125,7 @@ export default function PokemonCreate(){
                 img:""
             });
             
-            alert("Your Pokemons was succesfully created")
+            alert("Your Pokemon was succesfully created")
             dispatch(cleanPokemons(dispatch));        
             history.push("/home");
             }else{
