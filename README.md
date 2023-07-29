@@ -2,7 +2,16 @@
 
 # **POKEMON** | Proyecto Individual
 
+
+Algunas capturas de esta App:
+
+<img src="client\src\img\capturasApp.png" alt="" />
+
 ## 
+Te invito a ver un video donde se ve la app en funcionamiento: 
+https://www.linkedin.com/posts/iveth-gonzalez-98799895_javascript-redux-react-activity-7089720138811252736-gsE-?utm_source=share&utm_medium=member_desktop
+
+## **📌 OBJETIVOS CUMPLIDOS**
 
 -  He Construido una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** y **Sequelize**.
 -  Puse en práctica recursos básicos de estilos y diseño (UX : UI).
@@ -10,8 +19,6 @@
 -  Aprendi mejores prácticas.
 -  Aprendi y practicar el workflow de GIT.
 -  Utilize y practique testing.
-
-
 
 ---
 
@@ -77,6 +84,4 @@ Se ha construido una aplicación web a partir de la API [**pokeapi**](https://po
 
 <br />
 
-Algunas capturas de esta App:
 
-<img src="client\src\img\capturasApp.png" alt="" />
